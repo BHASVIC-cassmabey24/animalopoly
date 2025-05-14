@@ -1,8 +1,12 @@
 public class Square {
-    public int checkRarity() {
-        
+    private String squareName;
+
+
+    public void construct(String squareName) {
+        this.squareName = squareName;
     }
 
-    public String checkOwner() {
+    public boolean isAnimal() {
+        return false;
     }
 }
