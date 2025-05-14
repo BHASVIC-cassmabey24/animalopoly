@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Random;
 
 public class Player {
     public int currentSquare;
@@ -6,9 +7,40 @@ public class Player {
     private boolean missGo;
     private char symbol;
     public String name;
-    public void Roll(Dice dice, ArrayList<Square> board){
+    public void Roll(ArrayList<Square> board){
+        Random r= new Random();
         if (missGo==false){
-        this.currentSquare=dice.roll(currentSquare,this); //this moves the player the correct number of squares
+        int doublecount=0;
+        boolean ondouble=true;
+        while (ondouble == true){
+            int d1 = r.nextInt(7);
+            int d2 = r.nextInt(7);
+            if (d1==d2){
+                doublecount++;
+            }
+            if (doublecount>3){
+                currentSquare=10;
+                missGo=true;
+                break;
+            }
+            else{
+
+                int rollTotal = d1+d2;
+                currentSquare=rollTotal+currentSquare;
+                if ((board.get(currentSquare)).isAnimal() == true){
+
+                    if ((board.get(currentSquare)).getOwner()==null){
+                        System.out.println("would you like to buy",);
+                    }
+
+                }
+            }
+
+
+
+
+
+        }
 
         }
 
