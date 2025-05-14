@@ -13,18 +13,18 @@ public class Animal extends Square {
     private int level4Rent;
     private int level5Rent;
     private int totalSpent;
+    private int price;
     private boolean fullSet;
     private ArrayList<Square> arr;
 
-
-    public void construct(int rarity, int level, boolean fullSet, int boughtFor, String name) {
+    public Animal(String squareName, int rarity, int level, boolean fullSet, int boughtFor, String name) {
+        super(squareName);
         this.rarity = rarity;
         this.owner = null;
         this.level = level;
         this.fullSet = fullSet;
         this.totalSpent += boughtFor;
         this.name = name;
-
     }
 
     public int getRarity() {

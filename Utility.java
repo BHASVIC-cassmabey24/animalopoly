@@ -1,7 +1,7 @@
 public class Utility extends Square {
 
-    public void construct(boolean isStart) {
-
+    public Utility(String squareName, boolean isStart) {
+        super(squareName);
     }
 
 }
