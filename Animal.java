@@ -69,7 +69,7 @@ public class Animal extends Square {
         return fullSet;
     }
 
-    public void buy(int rarity, String owner, ArrayList<Square> arr) {
+    public void buy(String owner) {
         this.rarity = rarity;
         this.owner = owner;
         this.level = 0;
