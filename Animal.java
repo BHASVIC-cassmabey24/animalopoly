@@ -1,8 +1,9 @@
 import java.util.ArrayList;
 import java.util.Objects;
 
-public class Animal {
+public class Animal extends Square {
     private String owner;
+    private String name;
     private int rarity;
     private int level; // starts at 0
     private int level0Rent;
@@ -16,17 +17,22 @@ public class Animal {
     private ArrayList<Square> arr;
 
 
-    public void construct(int rarity, String owner, int level, boolean fullSet, int boughtFor) {
+    public void construct(int rarity, int level, boolean fullSet, int boughtFor, String name) {
         this.rarity = rarity;
-        this.owner = owner;
+        this.owner = null;
         this.level = level;
         this.fullSet = fullSet;
         this.totalSpent += boughtFor;
+        this.name = name;
 
     }
 
     public int getRarity() {
         return rarity;
+    }
+
+    public String getName() {
+        return name;
     }
 
     public String getOwner() {
@@ -72,7 +78,7 @@ public class Animal {
     }
 
     public int getMortgageCost() {
-        return totalSpent;
+        return (int) (totalSpent*0.75);
     }
 
     public void upgrade(int upgradeCost) {
@@ -84,9 +90,9 @@ public class Animal {
         int animalCount = 0;
         int ownedCount = 0;
         for (Square s : arr) {
-            if (s.checkRarity() == rarity) {
+            if (getRarity() == rarity) {
                 animalCount += 1;
-                if (Objects.equals(s.checkOwner(), owner)) { // this is not AI its intellij autofill being wierd recoomending
+                if (Objects.equals(getOwner(), owner)) { // this is not AI its intellij autofill being wierd recoomending
                     ownedCount += 1;
                 }
             }
@@ -99,4 +105,10 @@ public class Animal {
         }
 
     }
+
+    @Override // idk google told me to do that https://www.geeksforgeeks.org/overriding-in-java/
+    public boolean isAnimal() {
+        return true;
+    }
+
 }
