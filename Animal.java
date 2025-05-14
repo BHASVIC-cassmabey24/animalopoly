@@ -16,9 +16,10 @@ public class Animal extends Square {
     private int price;
     private boolean fullSet;
     private ArrayList<Square> arr;
+    private static int index;
 
     public Animal(String squareName, int rarity, int level, boolean fullSet, int boughtFor, String name) {
-        super(squareName);
+        super(squareName, index);
         this.rarity = rarity;
         this.owner = null;
         this.level = level;

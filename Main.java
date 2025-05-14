@@ -7,9 +7,11 @@ public class Main {
         // Init
         Init init = new Init();
         ArrayList<Square> board = Init.initBoard();
-
+        int count = 0;
         for (Square square : board) {
-            System.out.println(square);
+            int tmpIndex = square.getIndex();
+            System.out.println("count " + count + " | " + tmpIndex + ": " + square.getSquareName());
+            count += 1;
         }
     }
 
