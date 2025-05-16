@@ -29,9 +29,9 @@ public class Player {
                 currentSquare=rollTotal+currentSquare;
                 if ((board.get(currentSquare)).isAnimal() == true){
 
-                    if ((board.get(currentSquare)).getOwner()==null){
-                        System.out.println("would you like to buy",);
-                    }
+                    //if ((board.get(currentSquare)).getOwner()==null){
+                    //    System.out.println("would you like to buy");
+                    //}
 
                 }
             }
