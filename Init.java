@@ -3,18 +3,18 @@ import java.util.ArrayList;
 public class Init {
     static ArrayList<Square> initBoard() {
         ArrayList<Square> board = new ArrayList<Square>();
-        for (int j = 0; j < 40; j++) {
+        for (int j = 0; j < 3; j++) {
             board.add(j, new Square("nothing :)", j));
         }
         int cornerCounter = 1;
-        int regCounter = 1;
-        for (int i = 0; i < 40; i++) {
+        int regCounter = 0;
+        for (int i = 0; i < 36; i++) {
             if (i == 0) {
                 board.set(0, new Square("start", i));
                 cornerCounter += 1;
 
                 System.out.println("Sucessfully added start");
-            } else if (regCounter == 9) {
+            } else if (regCounter == 8) {
                 if (cornerCounter == 2) {
                     board.set(i, new Square("jail", i));
                 } else if (cornerCounter == 3) {
