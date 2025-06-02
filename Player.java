@@ -7,7 +7,7 @@ public class Player {
     public int currentSquare;
     private int money;
     private boolean missGo;
-    private char symbol;
+    private String symbol;
     public String name;
 
     public void Roll(ArrayList<Square> board, ArrayList<Player> players, ArrayList<Card> cards) {
@@ -155,7 +155,7 @@ public class Player {
         public void morgage () {
         }
 
-        public void constructor ( char Symbol, String name){
+        public Player (String Symbol, String name){
             this.symbol = Symbol;
             this.money = 1500;
             this.missGo = false;
