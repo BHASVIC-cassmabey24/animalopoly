@@ -17,7 +17,7 @@ public class Animal extends Square {
     private boolean fullSet;
     private ArrayList<Square> arr;
     private static int index;
-
+    private int upgradeCost;
     public Animal(String squareName, int rarity, int level, boolean fullSet, int boughtFor, String name) {
         super(squareName, index);
         this.rarity = rarity;
@@ -26,6 +26,7 @@ public class Animal extends Square {
         this.fullSet = fullSet;
         this.totalSpent += boughtFor;
         this.name = name;
+
     }
 
     public int getRarity() {
@@ -82,7 +83,7 @@ public class Animal extends Square {
         return (int) (totalSpent*0.75);
     }
 
-    public void upgrade(int upgradeCost) {
+    public void upgrade() {
         totalSpent += upgradeCost;
         level += 1;
     }
@@ -106,7 +107,13 @@ public class Animal extends Square {
         }
 
     }
+    public int getlevel(){
 
+        return level;
+    }
+    public int getUprice(){
+        return upgradeCost;
+    }
     @Override // idk google told me to do that https://www.geeksforgeeks.org/overriding-in-java/
     public boolean isAnimal() {
         return true;
