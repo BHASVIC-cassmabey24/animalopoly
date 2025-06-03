@@ -10,6 +10,14 @@ public class Player {
     private String symbol;
     public String name;
 
+    public Player(String symbol, String name) {
+        this.symbol = symbol;
+        this.money = 1500;
+        this.missGo = false;
+        this.currentSquare = 0;
+        this.name = name;
+    }
+
     public void Roll(ArrayList<Square> board, ArrayList<Player> players, ArrayList<Card> cards) {
         Scanner scanner = new Scanner(System.in);
         Random r = new Random();
@@ -22,8 +30,8 @@ public class Player {
                 if (d1 == d2) {
                     doublecount++;
                 }
-                if (doublecount > 3) {
-                    currentSquare = 9;
+                if (doublecount >= 3) {
+                    currentSquare = 10;
                     missGo = true;
                     break;
                 } else {
@@ -32,53 +40,53 @@ public class Player {
                     currentSquare = rollTotal + currentSquare;
                     if (currentSquare > 39) {
                         currentSquare = currentSquare - 40;
-                        money=money+200;
+                        money = money + 200;
                     }
+                    if (currentSquare == 27) {
+                        currentSquare = 10;
+                        missGo = true;
+                    } else {
 
-                    if ((board.get(currentSquare)).isAnimal()) { //checking if square is animal
-                        Animal animal = (Animal) board.get(currentSquare); // setting variable a to the animal landed on
-                        if ((animal.getOwner() == null)) { //checking if there is no owner and letting you buy it
-                            System.out.println("Would you like to buy this animal?");
-                            boolean valid = false;
-                            while (valid == false) { // validation for the choice of buying it
-                                String choice = scanner.nextLine();
-                                //System.out.println("The price is", animal.getPrice(), "Enter y/n");
-                                if (choice == "y") {
-                                    String aName = scanner.nextLine();
-                                    System.out.println("Please enter the name of the animal : ");
-                                    // animal.buy(name, aName);
-                                    valid = true;
-                                } else if (choice == "n") {
-                                    valid = true;
+                        if ((board.get(currentSquare)).isAnimal()) { //checking if square is animal
+                            Animal animal = (Animal) board.get(currentSquare); // setting variable a to the animal landed on
+                            if ((animal.getOwner() == null)) { //checking if there is no owner and letting you buy it
+                                System.out.println("Would you like to buy this animal?");
+                                boolean valid = false;
+                                while (valid == false) { // validation for the choice of buying it
+                                    String choice = scanner.nextLine();
+                                    //System.out.println("The price is", animal.getPrice(), "Enter y/n");
+                                    if (choice == "y") {
+                                        String aName = scanner.nextLine();
+                                        System.out.println("Please enter the name of the animal : ");
+                                        // animal.buy(name, aName);
+                                        valid = true;
+                                    } else if (choice == "n") {
+                                        valid = true;
+                                    }
                                 }
-                            }
-                        } else { //renting the player if this is not there tile
+                            } else { //renting the player if this is not there tile
 
-                            money = money - animal.getRent();
-                            String Owner = animal.getOwner();
-                            Player aOwner = null;
-                            for (int i = 0; i < players.size(); i++) {
-                                if (players.get(i).name.equals(Owner)) {
-                                    aOwner = players.get(i);
+                                money = money - animal.getRent();
+                                String Owner = animal.getOwner();
+                                Player aOwner = null;
+                                for (int i = 0; i < players.size(); i++) {
+                                    if (players.get(i).name.equals(Owner)) {
+                                        aOwner = players.get(i);
+                                    }
                                 }
+                                aOwner.setMoney(aOwner.getMoney() + animal.getRent());
                             }
-                            aOwner.setMoney(aOwner.getMoney() + animal.getRent());
+
+                        } else if (currentSquare == 0) {
+                            money = money + 200;
+                        } else if (board.get(currentSquare).isChance()) {
+
+                            int Rcard = r.nextInt(19);
+                            Card Chance = cards.get(Rcard);
+                            Chance.ability(this);
+
                         }
-
                     }
-                    //else if(board.get(currentSquare).isStart()){
-                    //    money = money + 200;
-                    //}
-                    //else if (board.get(currentSquare).isChance()) {
-//
-                    //    int Rcard = r.nextInt(19);
-                    //    Card Chance = cards.get(Rcard);
-                    //    Chance.ability(this);
-//
-                    //}
-
-
-
                 }
 
                     //allowing to increase levels of pets
@@ -101,7 +109,7 @@ public class Player {
                         if ((i == 0 || i == 7) && rarity[i] == 4) {
                             System.out.println("Would you like to an animal in rarity " + i);
                             boolean valid = false;
-                            ArrayList<Animal> set = new ArrayList<Animal>();//creating the set for the owner to choose with animal to upgrade
+                            ArrayList<Animal> set = new ArrayList<Animal>(); //creating the set for the owner to choose with animal to upgrade
                             for (int j = 0; j < portfolio.size(); j++) {
                                 if (portfolio.get(j).isAnimal()) {
                                     Animal tempAnimal = portfolio.get(j);
@@ -121,18 +129,16 @@ public class Player {
                                 for (int j = 0; j < set.size(); j++) {
                                     Animal tempAnimal = set.get(j);
                                     if (Achoice == tempAnimal.getName()) {
-                                        //if (tempAnimal.getlevel() <= 4) {
-                                        //    String choice = scanner.nextLine();
-                                        //    System.out.println("The price is", tempAnimal.getUprice(), "Enter y/n");
-                                        //    if (choice == "y") {
-                                        //        String aName = scanner.nextLine();
-                                        //        System.out.println("Please enter the name of the animal : ");
-                                        //        tempAnimal.upgrade(name, aName);
-                                        //        valid = true;
-                                        //    } else if (choice == "n") {
-                                        //        valid = true;
-                                        //    }
-                                        //}
+                                        if (tempAnimal.getlevel() <= 4) {
+                                            String choice = scanner.nextLine();
+                                            System.out.println("The price is "+toString(tempAnimal.getUprice())+" Enter y/n");
+                                            if (choice == "y") {
+                                                tempAnimal.upgrade();
+                                                valid = true;
+                                            } else if (choice == "n") {
+                                                valid = true;
+                                            }
+                                        }
                                     }
 
                                 }
@@ -148,19 +154,13 @@ public class Player {
 
         }
 
-
+        public String toString (int value){
+        return String.valueOf(value);
+        }
         public void Buy () {
         }
 
         public void morgage () {
-        }
-
-        public Player (String Symbol, String name){
-            this.symbol = Symbol;
-            this.money = 1500;
-            this.missGo = false;
-            this.currentSquare = 0;
-            this.name = name;
         }
 
         public void setMoney ( int money){
@@ -182,7 +182,16 @@ public class Player {
             }
 
         }
-        public String getSymbol(){return symbol;}
+
+    public void setMissGo(boolean missGo) {
+        this.missGo = missGo;
+    }
+
+    public void setCurrentSquare(int currentSquare) {
+        this.currentSquare = currentSquare;
+    }
+
+    public String getSymbol(){return symbol;}
 
         public String getName(){return name;}
 
