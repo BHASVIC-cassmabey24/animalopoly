@@ -4,7 +4,7 @@ public class Init {
     static ArrayList<Square> initBoard() {
         ArrayList<Square> board = new ArrayList<Square>();
         for (int j = 0; j < 36; j++) {
-            board.add(j, new Square("nothing :)", j));
+            board.add(j, new Square("empty", j));
         }
         int cornerCounter = 1;
         int regCounter = 0;
@@ -41,4 +41,5 @@ public class Init {
     private static void initPlayers() {
 
     }
+
 }

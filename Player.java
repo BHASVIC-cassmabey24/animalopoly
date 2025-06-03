@@ -42,11 +42,11 @@ public class Player {
                             boolean valid = false;
                             while (valid == false) { // validation for the choice of buying it
                                 String choice = scanner.nextLine();
-                                System.out.println("The price is", animal.getPrice(), "Enter y/n");
+                                //System.out.println("The price is", animal.getPrice(), "Enter y/n");
                                 if (choice == "y") {
                                     String aName = scanner.nextLine();
                                     System.out.println("Please enter the name of the animal : ");
-                                    animal.buy(name, aName);
+                                    // animal.buy(name, aName);
                                     valid = true;
                                 } else if (choice == "n") {
                                     valid = true;
@@ -66,16 +66,16 @@ public class Player {
                         }
 
                     }
-                    else if(board.get(currentSquare).isStart()){
-                        money = money + 200;
-                    }
-                    else if (board.get(currentSquare).isChance()) {
-
-                        int Rcard = r.nextInt(19);
-                        Card Chance = cards.get(Rcard);
-                        Chance.ability(this);
-
-                    }
+                    //else if(board.get(currentSquare).isStart()){
+                    //    money = money + 200;
+                    //}
+                    //else if (board.get(currentSquare).isChance()) {
+//
+                    //    int Rcard = r.nextInt(19);
+                    //    Card Chance = cards.get(Rcard);
+                    //    Chance.ability(this);
+//
+                    //}
 
 
 
@@ -121,18 +121,18 @@ public class Player {
                                 for (int j = 0; j < set.size(); j++) {
                                     Animal tempAnimal = set.get(j);
                                     if (Achoice == tempAnimal.getName()) {
-                                        if (tempAnimal.getlevel() <= 4) {
-                                            String choice = scanner.nextLine();
-                                            System.out.println("The price is", tempAnimal.getUprice(), "Enter y/n");
-                                            if (choice == "y") {
-                                                String aName = scanner.nextLine();
-                                                System.out.println("Please enter the name of the animal : ");
-                                                tempAnimal.upgrade(name, aName);
-                                                valid = true;
-                                            } else if (choice == "n") {
-                                                valid = true;
-                                            }
-                                        }
+                                        //if (tempAnimal.getlevel() <= 4) {
+                                        //    String choice = scanner.nextLine();
+                                        //    System.out.println("The price is", tempAnimal.getUprice(), "Enter y/n");
+                                        //    if (choice == "y") {
+                                        //        String aName = scanner.nextLine();
+                                        //        System.out.println("Please enter the name of the animal : ");
+                                        //        tempAnimal.upgrade(name, aName);
+                                        //        valid = true;
+                                        //    } else if (choice == "n") {
+                                        //        valid = true;
+                                        //    }
+                                        //}
                                     }
 
                                 }
@@ -185,6 +185,8 @@ public class Player {
         public String getSymbol(){return symbol;}
 
         public String getName(){return name;}
+
+    public int getCurrentSquare(){return currentSquare;}
     }
 
-}
+

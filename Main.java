@@ -77,14 +77,91 @@ public class Main {
         }
     }
 
+    public static void drawBoard(ArrayList<Square> board) {
+        // top row
+        // first line
+        String line = "";
+        for (int i = 0; i < 10; i++) {
+            line += " _________  ";
+        }
+        System.out.println(line);
+        // second line
+        line = "";
+        for (int i = 0; i < 10; i++) {
+            line += "|        |  ";
+        }
+        System.out.println(line);
+        // third line. contains square name
+        line = "";
+        String name;
+        String tempLine;
+        int leftchars = 0;
+        for (int i = 0; i < 10; i++) {
+            name = board.get(i).getSquareName();
+
+
+            // 12 chars
+            leftchars = 12 - (5 + name.length());
+            tempLine = "| "  // 2 chars
+            + name; // we dont know how many chars
+            for (int j = 0; j < leftchars; j++) {
+                tempLine += " ";
+            }
+            line += tempLine + "|  "; // 3 extra char
+            leftchars = 0;
+            name = "";
+        }
+        System.out.println(line);
+        // forth line
+        line = ""; // 2 chars
+        String playersOnSquare = "";
+        leftchars = 0;
+        for (int i = 0; i < 10; i++) {
+            line += "| ";
+            for (Player player : players) {
+                if (player.getCurrentSquare() == i) {
+                    playersOnSquare += player.getSymbol() + " ";
+                }
+            }
+            leftchars = 12 - (5 + playersOnSquare.length());
+            line += playersOnSquare;
+            for (int j = 0; j < leftchars; j++) {
+                line += " ";
+            }
+            line += "|  ";
+            playersOnSquare = "";
+            leftchars = 0;
+        }
+        System.out.println(line);
+        // fifth line
+        line = ""; // 2 chars
+        for (int i = 0; i < 10; i++) {
+            line += "----------  ";
+        }
+        System.out.println(line);
+    }
+
+
+
+
     public static void main(String[] args) {
         // Init
         Init init = new Init();
         ArrayList<Square> board = Init.initBoard();
 
-        amountOfPlayers = getAmountOfPlayers();
+        //for (int i = 0; i < board.size(); i++) {
+        //    System.out.println(board.get(i).toString());
+        //}
 
-        getPlayersInfo(amountOfPlayers);
+        //amountOfPlayers = getAmountOfPlayers();
+//
+        //getPlayersInfo(amountOfPlayers);
+
+        players.add(new Player("!", "CassidyOne"));
+        players.add(new Player("$", "CassidyTwo"));
+        System.out.println("Game Initialised");
+
+        drawBoard(board);
     }
 
 
