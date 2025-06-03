@@ -18,14 +18,98 @@ public class Animal extends Square {
     private ArrayList<Square> arr;
     private static int index;
     private int upgradeCost;
-    public Animal(String squareName, int rarity, int level, boolean fullSet, int boughtFor, String name) {
+
+    public Animal(String squareName, int rarity, int level) {
         super(squareName, index);
         this.rarity = rarity;
         this.owner = null;
         this.level = level;
-        this.fullSet = fullSet;
-        this.totalSpent += boughtFor;
-        this.name = name;
+        switch (rarity) {
+            case 0:
+                this.price = 60;
+                this.upgradeCost = 50;
+                this.level0Rent = 4;
+                this.level1Rent = 20;
+                this.level2Rent = 60;
+                this.level3Rent = 180;
+                this.level4Rent = 320;
+                this.level5Rent = 450;
+                break;
+            case 1:
+                this.price = 100;
+                this.upgradeCost = 50;
+                this.level0Rent = 8;
+                this.level1Rent = 40;
+                this.level2Rent = 100;
+                this.level3Rent = 300;
+                this.level4Rent = 450;
+                this.level5Rent = 600;
+                break;
+            case 2:
+                this.price = 140;
+                this.upgradeCost = 100;
+                this.level0Rent = 12;
+                this.level1Rent = 60;
+                this.level2Rent = 180;
+                this.level3Rent = 500;
+                this.level4Rent = 700;
+                this.level5Rent = 900;
+                break;
+            case 3:
+                this.price = 180;
+                this.upgradeCost = 100;
+                this.level0Rent = 16;
+                this.level1Rent = 80;
+                this.level2Rent = 220;
+                this.level3Rent = 600;
+                this.level4Rent = 800;
+                this.level5Rent = 1000;
+                break;
+            case 4:
+                this.price = 220;
+                this.upgradeCost = 150;
+                this.level0Rent = 20;
+                this.level1Rent = 100;
+                this.level2Rent = 300;
+                this.level3Rent = 750;
+                this.level4Rent = 925;
+                this.level5Rent = 1100;
+                break;
+            case 5:
+                this.price = 260;
+                this.upgradeCost = 150;
+                this.level0Rent = 24;
+                this.level1Rent = 120;
+                this.level2Rent = 360;
+                this.level3Rent = 850;
+                this.level4Rent = 1025;
+                this.level5Rent = 1200;
+                break;
+            case 6:
+                this.price = 300;
+                this.upgradeCost = 200;
+                this.level0Rent = 28;
+                this.level1Rent = 150;
+                this.level2Rent = 450;
+                this.level3Rent = 1000;
+                this.level4Rent = 1200;
+                this.level5Rent = 1400;
+                break;
+            case 7:
+                this.price = 400;
+                this.upgradeCost = 200;
+                this.level0Rent = 50;
+                this.level1Rent = 200;
+                this.level2Rent = 600;
+                this.level3Rent = 1400;
+                this.level4Rent = 1700;
+                this.level5Rent = 2000;
+                break;
+        }
+
+
+
+        this.name = squareName;
 
     }
 
@@ -80,7 +164,7 @@ public class Animal extends Square {
     }
 
     public int getMortgageCost() {
-        return (int) (totalSpent*0.75);
+        return (int) (totalSpent * 0.75);
     }
 
     public void upgrade() {
@@ -107,13 +191,16 @@ public class Animal extends Square {
         }
 
     }
-    public int getlevel(){
+
+    public int getlevel() {
 
         return level;
     }
-    public int getUprice(){
+
+    public int getUprice() {
         return upgradeCost;
     }
+
     @Override // idk google told me to do that https://www.geeksforgeeks.org/overriding-in-java/
     public boolean isAnimal() {
         return true;
