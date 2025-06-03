@@ -38,8 +38,8 @@ public class Player {
 
                     int rollTotal = d1 + d2; //total squares moved
                     currentSquare = rollTotal + currentSquare;
-                    if (currentSquare > 39) {
-                        currentSquare = currentSquare - 40;
+                    if (currentSquare > 35) {
+                        currentSquare = currentSquare - 36;
                         money = money + 200;
                     }
                     if (currentSquare == 27) {
