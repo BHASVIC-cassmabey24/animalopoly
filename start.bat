@@ -1,0 +1,3 @@
+@echo off
+"C:\Program Files\Java\jdk-21\bin\java.exe" "-javaagent:C:\Program Files (x86)\JetBrains\IntelliJ IDEA 2024.1.4\lib\idea_rt.jar=57329:C:\Program Files (x86)\JetBrains\IntelliJ IDEA 2024.1.4\bin" -Dfile.encoding=UTF-8 -Dsun.stdout.encoding=UTF-8 -Dsun.stderr.encoding=UTF-8 -classpath "C:\Users\cass.mabey24\OneDrive - BHASVIC\computerscience\java\animalopoly\out\production\animalopoly" Main
+pause

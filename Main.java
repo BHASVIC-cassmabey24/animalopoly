@@ -88,7 +88,10 @@ public class Main {
         // second line
         line = "";
         for (int i = 0; i < 10; i++) {
-            line += "|        |  ";
+            line += "| ";
+            line += String.valueOf(i);
+            line += "      |  ";
+
         }
         System.out.println(line);
         // third line. contains square name
@@ -138,11 +141,222 @@ public class Main {
         for (int i = 0; i < 10; i++) {
             line += "----------  ";
         }
+
         System.out.println(line);
+
+        createCornerBits(35, 10, board);
+        createCornerBits(34, 11, board);
+        createCornerBits(33, 12, board);
+        createCornerBits(32, 13, board);
+        createCornerBits(31, 14, board);
+        createCornerBits(30, 15, board);
+        createCornerBits(29, 16, board);
+        createCornerBits(28, 17, board);
+
+
+        line = "";
+        for (int i = 0; i < 10; i++) {
+            line += " _________  ";
+        }
+        System.out.println(line);
+        // second line
+        line = "";
+        for (int i = 27; i > 17; i--) {
+            //line += "|        |  ";
+            line += "| ";
+            line += String.valueOf(i);
+            if (String.valueOf(i).length() == 1) {
+                line += "      |  ";
+            } else {
+                line += "     |  ";
+            }
+
+        }
+        System.out.println(line);
+        // third line. contains square name
+        line = "";
+
+        leftchars = 0;
+        for (int i = 27; i > 17; i--) {
+            name = board.get(i).getSquareName();
+
+
+            // 12 chars
+            leftchars = 12 - (5 + name.length());
+            tempLine = "| "  // 2 chars
+                    + name; // we dont know how many chars
+            for (int j = 0; j < leftchars; j++) {
+                tempLine += " ";
+            }
+            line += tempLine + "|  "; // 3 extra char
+            leftchars = 0;
+            name = "";
+        }
+        System.out.println(line);
+        // forth line
+        line = ""; // 2 chars
+        playersOnSquare = "";
+        leftchars = 0;
+        for (int i = 27; i > 17; i--) {
+            line += "| ";
+            for (Player player : players) {
+                if (player.getCurrentSquare() == i) {
+                    playersOnSquare += player.getSymbol() + " ";
+                }
+            }
+            leftchars = 12 - (5 + playersOnSquare.length());
+            line += playersOnSquare;
+            for (int j = 0; j < leftchars; j++) {
+                line += " ";
+            }
+            line += "|  ";
+            playersOnSquare = "";
+            leftchars = 0;
+        }
+        System.out.println(line);
+        // fifth line
+        line = ""; // 2 chars
+        for (int i = 0; i < 10; i++) {
+            line += "----------  ";
+        }
+
+
+
     }
 
 
+    public static void createCornerBits(int num1, int num2, ArrayList<Square> board) {
 
+        // sixth line
+        String line = "";
+        for (int i = 0; i < 10; i++) {
+            if (i == 0) {
+                line += "----------  ";
+            } else if (i == 9) {
+                line += "----------  ";
+            } else {
+                line += "            ";
+            }
+        }
+        System.out.println(line);
+
+        // seventh line
+        line = "";
+        for (int i = 0; i < 10; i++) {
+            if (i == 0) {
+                //line += "|        |  ";
+                line += "| ";
+                line += String.valueOf(num1);
+                if (String.valueOf(num1).length() == 1) {
+                    line += "      |  ";
+                } else {
+                    line += "     |  ";
+                }
+
+
+            } else if (i == 9) {
+                //line += "|        |  ";
+                line += "| ";
+                line += String.valueOf(num2);
+                if (String.valueOf(num2).length() == 1) {
+                    line += "      |  ";
+                } else {
+                    line += "     |  ";
+                }
+            } else {
+                line += "            ";
+            }
+        }
+        System.out.println(line);
+
+        // eighth line
+        line = "";
+        String name = "";
+        String tempLine = "";
+        int leftchars = 0;
+        for (int i = 0; i < 10; i++) {
+            if (i == 0) {
+                name = board.get(35).getSquareName();
+
+
+                // 12 chars
+                leftchars = 12 - (5 + name.length());
+                tempLine = "| "  // 2 chars
+                        + name; // we dont know how many chars
+                for (int j = 0; j < leftchars; j++) {
+                    tempLine += " ";
+                }
+                line += tempLine + "|  "; // 3 extra char
+            } else if (i == 9) {
+                name = board.get(10).getSquareName();
+
+
+                // 12 chars
+                leftchars = 12 - (5 + name.length());
+                tempLine = "| "  // 2 chars
+                        + name; // we dont know how many chars
+                for (int j = 0; j < leftchars; j++) {
+                    tempLine += " ";
+                }
+                line += tempLine + "|  "; // 3 extra char
+            } else {
+                line += "            ";
+            }
+
+            leftchars = 0;
+            name = "";
+        }
+        System.out.println(line);
+
+        line = ""; // 2 chars
+        String playersOnSquare = "";
+        for (int i = 0; i < 10; i++) {
+            if (i == 0) {
+                line += "| "; // 2 chars
+                for (Player player : players) {
+                    if (player.getCurrentSquare() == num1) {
+                        playersOnSquare += player.getSymbol() + " ";
+                    }
+                }
+                leftchars = 12 - (5 + playersOnSquare.length());
+                line += playersOnSquare;
+                for (int j = 0; j < leftchars; j++) {
+                    line += " ";
+                }
+                line += "|  ";
+            } else if (i == 9) {
+                line += "| ";
+                for (Player player : players) {
+                    if (player.getCurrentSquare() == num2) {
+                        playersOnSquare += player.getSymbol() + " ";
+                    }
+                }
+                leftchars = 12 - (5 + playersOnSquare.length());
+                line += playersOnSquare;
+                for (int j = 0; j < leftchars; j++) {
+                    line += " ";
+                }
+                line += "|  ";
+            } else {
+                line += "            ";
+            }
+
+            playersOnSquare = "";
+        }
+        System.out.println(line);
+
+        line = "";
+        for (int i = 0; i < 10; i++) {
+            if (i == 0) {
+                line += "----------  ";
+            } else if (i == 9) {
+                line += "----------  ";
+            } else {
+                line += "            ";
+            }
+        }
+        System.out.println(line);
+    }
 
     public static void main(String[] args) {
         // Init

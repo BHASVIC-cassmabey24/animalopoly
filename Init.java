@@ -18,10 +18,8 @@ public class Init {
             } else if (regCounter == 8) {
                 if (cornerCounter == 2) {
                     board.set(i, new Square("jail", i));
-                } else if (cornerCounter == 3) {
-                    board.set(i, new Square("free parking", i));
                 } else if (cornerCounter == 4) {
-                    board.set(i, new Square("go to jail", i));
+                    board.set(i, new Square("jail", i));
                 }
                 cornerCounter += 1;
                 regCounter = 0;
