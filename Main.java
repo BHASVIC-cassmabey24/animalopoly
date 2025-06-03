@@ -363,19 +363,12 @@ public class Main {
         Init init = new Init();
         ArrayList<Square> board = Init.initBoard();
 
-        //for (int i = 0; i < board.size(); i++) {
-        //    System.out.println(board.get(i).toString());
-        //}
-
-        //amountOfPlayers = getAmountOfPlayers();
-//
-        //getPlayersInfo(amountOfPlayers);
-
-        players.add(new Player("!", "CassidyOne"));
-        players.add(new Player("$", "CassidyTwo"));
+        drawBoard(board);
         System.out.println("Game Initialised");
 
-        drawBoard(board);
+
+
+
     }
 
 
