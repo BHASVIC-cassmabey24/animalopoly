@@ -31,7 +31,7 @@ public class Player {
                     doublecount++;
                 }
                 if (doublecount >= 3) {
-                    currentSquare = 10;
+                    currentSquare = 9;
                     missGo = true;
                     break;
                 } else {
@@ -43,7 +43,7 @@ public class Player {
                         money = money + 200;
                     }
                     if (currentSquare == 27) {
-                        currentSquare = 10;
+                        currentSquare = 9;
                         missGo = true;
                     } else {
 

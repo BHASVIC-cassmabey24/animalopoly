@@ -14,7 +14,7 @@ public class Card extends Square {
 
             case 0:
             case 1:
-                player.setCurrentSquare(10);
+                player.setCurrentSquare(9);
                 player.setMissGo(true);
                 break;
             case 2:
