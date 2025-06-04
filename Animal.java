@@ -5,7 +5,7 @@ public class Animal extends Square {
     private String owner;
     private String name;
     private int rarity;
-    private int level; // starts at 0
+    private int level;
     private int level0Rent;
     private int level1Rent;
     private int level2Rent;
@@ -25,85 +25,85 @@ public class Animal extends Square {
         this.owner = null;
         this.level = level;
         switch (rarity) {
-            case 0:
+            case 0: // Brown
                 this.price = 60;
                 this.upgradeCost = 50;
-                this.level0Rent = 4;
-                this.level1Rent = 20;
-                this.level2Rent = 60;
-                this.level3Rent = 180;
-                this.level4Rent = 320;
-                this.level5Rent = 450;
+                this.level0Rent = 2;
+                this.level1Rent = 10;
+                this.level2Rent = 30;
+                this.level3Rent = 90;
+                this.level4Rent = 160;
+                this.level5Rent = 250;
                 break;
-            case 1:
+            case 1: // Light blue
                 this.price = 100;
                 this.upgradeCost = 50;
-                this.level0Rent = 8;
-                this.level1Rent = 40;
-                this.level2Rent = 100;
-                this.level3Rent = 300;
-                this.level4Rent = 450;
-                this.level5Rent = 600;
+                this.level0Rent = 6;
+                this.level1Rent = 30;
+                this.level2Rent = 90;
+                this.level3Rent = 270;
+                this.level4Rent = 400;
+                this.level5Rent = 550;
                 break;
-            case 2:
+            case 2: // Pink
                 this.price = 140;
                 this.upgradeCost = 100;
-                this.level0Rent = 12;
-                this.level1Rent = 60;
-                this.level2Rent = 180;
-                this.level3Rent = 500;
-                this.level4Rent = 700;
-                this.level5Rent = 900;
+                this.level0Rent = 10;
+                this.level1Rent = 50;
+                this.level2Rent = 150;
+                this.level3Rent = 450;
+                this.level4Rent = 625;
+                this.level5Rent = 750;
                 break;
-            case 3:
+            case 3: // Orange
                 this.price = 180;
                 this.upgradeCost = 100;
-                this.level0Rent = 16;
-                this.level1Rent = 80;
-                this.level2Rent = 220;
-                this.level3Rent = 600;
-                this.level4Rent = 800;
-                this.level5Rent = 1000;
+                this.level0Rent = 14;
+                this.level1Rent = 70;
+                this.level2Rent = 200;
+                this.level3Rent = 550;
+                this.level4Rent = 750;
+                this.level5Rent = 950;
                 break;
-            case 4:
+            case 4: // Red
                 this.price = 220;
                 this.upgradeCost = 150;
-                this.level0Rent = 20;
-                this.level1Rent = 100;
-                this.level2Rent = 300;
-                this.level3Rent = 750;
-                this.level4Rent = 925;
-                this.level5Rent = 1100;
+                this.level0Rent = 18;
+                this.level1Rent = 90;
+                this.level2Rent = 250;
+                this.level3Rent = 700;
+                this.level4Rent = 875;
+                this.level5Rent = 1050;
                 break;
-            case 5:
+            case 5: // Yellow
                 this.price = 260;
                 this.upgradeCost = 150;
-                this.level0Rent = 24;
-                this.level1Rent = 120;
-                this.level2Rent = 360;
-                this.level3Rent = 850;
-                this.level4Rent = 1025;
-                this.level5Rent = 1200;
+                this.level0Rent = 22;
+                this.level1Rent = 110;
+                this.level2Rent = 330;
+                this.level3Rent = 800;
+                this.level4Rent = 975;
+                this.level5Rent = 1150;
                 break;
-            case 6:
+            case 6: // Green
                 this.price = 300;
                 this.upgradeCost = 200;
-                this.level0Rent = 28;
-                this.level1Rent = 150;
-                this.level2Rent = 450;
-                this.level3Rent = 1000;
-                this.level4Rent = 1200;
-                this.level5Rent = 1400;
+                this.level0Rent = 26;
+                this.level1Rent = 130;
+                this.level2Rent = 390;
+                this.level3Rent = 900;
+                this.level4Rent = 1100;
+                this.level5Rent = 1275;
                 break;
-            case 7:
-                this.price = 400;
+            case 7: // Blue
+                this.price = rarity == 7 ? 350 : 400;
                 this.upgradeCost = 200;
-                this.level0Rent = 50;
-                this.level1Rent = 200;
-                this.level2Rent = 600;
-                this.level3Rent = 1400;
-                this.level4Rent = 1700;
-                this.level5Rent = 2000;
+                this.level0Rent = rarity == 7 ? 35 : 50;
+                this.level1Rent = rarity == 7 ? 175 : 200;
+                this.level2Rent = rarity == 7 ? 500 : 600;
+                this.level3Rent = rarity == 7 ? 1100 : 1400;
+                this.level4Rent = rarity == 7 ? 1300 : 1700;
+                this.level5Rent = rarity == 7 ? 1500 : 2000;
                 break;
         }
 
@@ -178,7 +178,7 @@ public class Animal extends Square {
         for (Square s : arr) {
             if (getRarity() == rarity) {
                 animalCount += 1;
-                if (Objects.equals(getOwner(), owner)) { // this is not AI its intellij autofill being wierd recoomending
+                if (Objects.equals(getOwner(), owner)) { 
                     ownedCount += 1;
                 }
             }
@@ -199,6 +199,10 @@ public class Animal extends Square {
 
     public int getUprice() {
         return upgradeCost;
+    }
+
+    public int getPrice() {
+        return price;
     }
 
     @Override // idk google told me to do that https://www.geeksforgeeks.org/overriding-in-java/

@@ -1,14 +1,13 @@
-
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
 
 public class Player {
-    public int currentSquare;
+    private int currentSquare;
     private int money;
     private boolean missGo;
     private String symbol;
-    public String name;
+    private String name;
 
     public Player(String symbol, String name) {
         this.symbol = symbol;
@@ -187,8 +186,16 @@ public class Player {
         this.missGo = missGo;
     }
 
-    public void setCurrentSquare(int currentSquare) {
-        this.currentSquare = currentSquare;
+    public void setCurrentSquare(int square) {
+        if (square < currentSquare && !missGo) {
+            money += 500;  // passing start
+            System.out.println("passed start! collected $500");
+        }
+        this.currentSquare = square;
+        if (square == 0) {  // landing on start
+            money += 1000;
+            System.out.println("landed on start! collected $1000");
+        }
     }
 
     public String getSymbol(){return symbol;}
@@ -196,6 +203,9 @@ public class Player {
         public String getName(){return name;}
 
     public int getCurrentSquare(){return currentSquare;}
+    public boolean isMissGo() {
+        return missGo;
     }
+}
 
 
