@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.concurrent.TimeUnit;
 
 public class Main {
     public static boolean debugging = false;
@@ -408,6 +409,7 @@ public class Main {
                 }
             }
         } else if (square.getSquareName().equals("Chance")) {
+
             Card card = new Card("Chance", (int)(Math.random() * 20));
             int oldMoney = player.getMoney();
             int oldPosition = player.getCurrentSquare();
@@ -431,6 +433,7 @@ public class Main {
                     System.out.println("chance card: moved to " + board.get(player.getCurrentSquare()).getSquareName());
                 }
             }
+
         }
     }
 
@@ -458,7 +461,7 @@ public class Main {
         }
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
         board = Init.initBoard();
         System.out.println("game initialised");
         amountOfPlayers = getAmountOfPlayers();
@@ -485,11 +488,13 @@ public class Main {
                 
                 int newPosition = (currentPlayer.getCurrentSquare() + totalRoll) % 36;
                 currentPlayer.setCurrentSquare(newPosition);
-                
+                TimeUnit.SECONDS.sleep(1);
                 System.out.println("landed on " + board.get(newPosition).getSquareName());
-                drawBoard(board);
-                
+                TimeUnit.SECONDS.sleep(1);
+
+
                 processSquare(currentPlayer, board.get(newPosition));
+
                 checkBankruptcy();
                 
                 if (players.size() == 1) {
